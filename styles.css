@@ -1956,51 +1956,93 @@ input:checked+.toggle-slider:before {
 /* =========================================================
    📱 MOBILE: "ZOOMED OUT WEB VERSION" EXPERIENCE
    ========================================================= */
+/* =========================================================
+   📱 MOBILE: VIRTUAL DESKTOP CANVAS (PERFECT PC PROPORTIONS)
+   ========================================================= */
 @media (max-width: 768px) {
 
-    /* 1. Natively zoom out ONLY the table area so it acts like a wide PC monitor */
-    /* This shrinks the table perfectly without causing dead green space margins */
+    /* --- 1. THE VIRTUAL CANVAS WRAPPER --- */
     .table-area {
-        zoom: 0.55 !important;
-        width: 100% !important;
-        margin-top: 10px !important;
+        width: 100vw !important;
+        height: 65vh !important;
+        /* Reserves the bottom 35% of the screen for your hand */
+        overflow: hidden !important;
+        margin: 10px 0 0 0 !important;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
     }
 
-    /* Keep the table spacious and wide just like the web version */
+    /* --- 2. THE MASSIVE PC TABLE --- */
+    /* We force the table to be an exact PC resolution, giving tons of room for melds! */
     .felt-table {
-        width: 95% !important;
-        height: 75vh !important;
-        border-radius: 40px !important;
+        position: relative !important;
+        width: 1050px !important;
+        /* Massive width for side melds */
+        height: 800px !important;
+        /* Massive height for top/bottom melds */
+        max-width: none !important;
+        max-height: none !important;
+        border-radius: 60px !important;
+
+        /* MAGIC TRICK: Mathematically shrink this massive 1050px table to exactly fit the phone's width! */
+        transform: scale(calc(100vw / 1080)) !important;
+        transform-origin: top center !important;
     }
 
-    /* --- 2. RESTORE PC HAND COMFORT & SPACING --- */
-    /* Removed the terrible tight overlapping. Back to web sizes! */
+    /* Keep Player Seats exactly where they belong on the massive table */
+    .seat-south {
+        bottom: -20px !important;
+    }
+
+    .seat-north {
+        top: -20px !important;
+    }
+
+    .seat-west {
+        left: -40px !important;
+        z-index: 45 !important;
+    }
+
+    .seat-east {
+        right: -40px !important;
+        z-index: 45 !important;
+    }
+
+    /* --- 3. NATIVE PHONE HAND (UNSCALED) --- */
+    /* We keep your hand OUTSIDE the mathematical scale so it remains perfectly tappable */
+    .hand-area {
+        background: var(--bg-dark) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
     .player-hand {
         overflow-x: auto !important;
         justify-content: safe center !important;
-        height: 160px !important;
-        /* Tall enough for pop-ups */
-        padding: 30px 20px 10px 20px !important;
-        background: var(--bg-dark) !important;
+        height: 140px !important;
+        width: 100vw !important;
+        padding: 20px 10px 10px 10px !important;
     }
 
+    /* Cards are large and comfortably spaced for phone tapping */
     .player-hand .card {
-        width: 72px !important;
-        /* Exact Web Size */
-        height: 108px !important;
-        /* Exact Web Size */
-        font-size: 1rem !important;
-        margin-left: -20px !important;
-        /* Exact Web Comfortable Spacing! */
-        box-shadow: -2px 0 6px rgba(0, 0, 0, 0.4) !important;
-        /* Helps separate the cards */
+        width: 64px !important;
+        height: 96px !important;
+        font-size: 0.9rem !important;
+        margin-left: -25px !important;
+        /* Comfortable overlap */
+        box-shadow: -3px 0 8px rgba(0, 0, 0, 0.5) !important;
     }
 
     .player-hand .card:first-child {
         margin-left: 0 !important;
     }
 
-    /* --- 3. TIDY HEADER & MENUS --- */
+    .player-hand .card .card-center {
+        font-size: 1.5rem !important;
+    }
+
+    /* --- 4. COMPACT SCOREBOARD & HEADER --- */
     .table-header {
         flex-wrap: wrap !important;
         padding: 5px !important;
@@ -2010,9 +2052,6 @@ input:checked+.toggle-slider:before {
         display: none !important;
     }
 
-    /* Hide logo to make room for scores */
-
-    /* Stack Scoreboard Vertically so it is readable on phone */
     .round-summary-grid {
         grid-template-columns: 1fr !important;
         gap: 15px !important;
@@ -2021,5 +2060,7 @@ input:checked+.toggle-slider:before {
     .modal-content {
         width: 95vw !important;
         padding: 15px !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
     }
 }
