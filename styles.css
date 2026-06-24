@@ -1946,3 +1946,162 @@ input:checked+.toggle-slider:before {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     transform-origin: center center;
 }
+
+/* =========================================================
+   📱 MOBILE RESPONSIVENESS (PHONES & SMALL TABLETS) 
+   ========================================================= */
+@media (max-width: 768px) {
+
+    /* 1. Zoom out the main table drastically to fit phone widths */
+    .table-area {
+        transform: scale(0.55) !important;
+        margin: 0 !important;
+    }
+
+    /* 2. Reshape the felt board to leave room for the hand at the bottom */
+    .felt-table {
+        height: 65vh !important;
+        border-width: 12px !important;
+        border-radius: 40px !important;
+    }
+
+    /* 3. Shrink Seats & Names to prevent them from clipping off the screen */
+    .seat {
+        width: 120px !important;
+    }
+
+    .player-card {
+        width: 120px !important;
+        padding: 4px !important;
+    }
+
+    .player-name {
+        font-size: 0.75rem !important;
+    }
+
+    .player-avatar {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* Pull Seats much closer inward to the table */
+    .seat-west {
+        left: -5px !important;
+    }
+
+    .seat-east {
+        right: -5px !important;
+    }
+
+    .seat-north {
+        top: 10px !important;
+    }
+
+    .seat-south {
+        bottom: 10px !important;
+    }
+
+    /* 4. Compact the Header */
+    .table-header {
+        padding: 0.4rem 0.5rem !important;
+        gap: 5px !important;
+    }
+
+    .table-logo {
+        font-size: 1rem !important;
+    }
+
+    .header-score-pill {
+        font-size: 0.65rem !important;
+        padding: 0.2rem 0.5rem !important;
+    }
+
+    #turn-indicator {
+        font-size: 0.75rem !important;
+    }
+
+    #btn-quit {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* 5. Compact the Player Hand so it doesn't cover the board */
+    .hand-area {
+        padding: 0.4rem !important;
+    }
+
+    .player-hand {
+        height: 105px !important;
+        padding-top: 10px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .player-hand .card {
+        width: 46px !important;
+        height: 69px !important;
+        font-size: 0.7rem !important;
+        margin-left: -26px !important;
+        /* Stack them tighter */
+    }
+
+    .player-hand .card .card-center {
+        font-size: 1.1rem !important;
+    }
+
+    .hand-actions .btn {
+        padding: 0.4rem 0.7rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    #pending-meld-points {
+        font-size: 0.75rem !important;
+    }
+
+    /* 6. Stack Scoreboard Vertically so it doesn't get squished */
+    .round-summary-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.8rem !important;
+    }
+
+    .modal-content {
+        padding: 1.2rem !important;
+        width: 95vw !important;
+    }
+
+    .rs-line-val {
+        font-size: 0.85rem !important;
+        flex: 0 0 50px !important;
+    }
+
+    .rs-line-label {
+        font-size: 0.75rem !important;
+        flex: 0 0 100px !important;
+    }
+
+    .rs-line-cards {
+        gap: 2px !important;
+    }
+
+    /* 7. Lobby Adjustments */
+    .menu-title {
+        font-size: 3.5rem !important;
+    }
+
+    #lobby-choices input {
+        font-size: 1rem !important;
+        padding: 0.6rem !important;
+    }
+
+    .lobby-teams-container {
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+
+    .lobby-vs {
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+}
