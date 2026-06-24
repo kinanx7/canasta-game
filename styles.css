@@ -1948,160 +1948,202 @@ input:checked+.toggle-slider:before {
 }
 
 /* =========================================================
-   📱 MOBILE RESPONSIVENESS (PHONES & SMALL TABLETS) 
+   📱 AGGRESSIVE MOBILE OVERHAUL (PHONES) 
    ========================================================= */
 @media (max-width: 768px) {
 
-    /* 1. Zoom out the main table drastically to fit phone widths */
-    .table-area {
-        transform: scale(0.55) !important;
-        margin: 0 !important;
-    }
-
-    /* 2. Reshape the felt board to leave room for the hand at the bottom */
-    .felt-table {
-        height: 65vh !important;
-        border-width: 12px !important;
-        border-radius: 40px !important;
-    }
-
-    /* 3. Shrink Seats & Names to prevent them from clipping off the screen */
-    .seat {
-        width: 120px !important;
-    }
-
-    .player-card {
-        width: 120px !important;
-        padding: 4px !important;
-    }
-
-    .player-name {
-        font-size: 0.75rem !important;
-    }
-
-    .player-avatar {
-        width: 22px !important;
-        height: 22px !important;
-        font-size: 0.7rem !important;
-    }
-
-    /* Pull Seats much closer inward to the table */
-    .seat-west {
-        left: -5px !important;
-    }
-
-    .seat-east {
-        right: -5px !important;
-    }
-
-    .seat-north {
-        top: 10px !important;
-    }
-
-    .seat-south {
-        bottom: 10px !important;
-    }
-
-    /* 4. Compact the Header */
-    .table-header {
-        padding: 0.4rem 0.5rem !important;
-        gap: 5px !important;
-    }
-
-    .table-logo {
-        font-size: 1rem !important;
-    }
-
-    .header-score-pill {
-        font-size: 0.65rem !important;
-        padding: 0.2rem 0.5rem !important;
-    }
-
-    #turn-indicator {
-        font-size: 0.75rem !important;
-    }
-
-    #btn-quit {
-        padding: 0.3rem 0.6rem !important;
-        font-size: 0.75rem !important;
-    }
-
-    /* 5. Compact the Player Hand so it doesn't cover the board */
-    .hand-area {
-        padding: 0.4rem !important;
-    }
-
-    .player-hand {
-        height: 105px !important;
-        padding-top: 10px !important;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-    }
-
-    .player-hand .card {
-        width: 46px !important;
-        height: 69px !important;
-        font-size: 0.7rem !important;
-        margin-left: -26px !important;
-        /* Stack them tighter */
-    }
-
-    .player-hand .card .card-center {
-        font-size: 1.1rem !important;
-    }
-
-    .hand-actions .btn {
-        padding: 0.4rem 0.7rem !important;
-        font-size: 0.8rem !important;
-    }
-
-    #pending-meld-points {
-        font-size: 0.75rem !important;
-    }
-
-    /* 6. Stack Scoreboard Vertically so it doesn't get squished */
-    .round-summary-grid {
-        grid-template-columns: 1fr !important;
-        gap: 0.8rem !important;
-    }
-
-    .modal-content {
-        padding: 1.2rem !important;
-        width: 95vw !important;
-    }
-
-    .rs-line-val {
-        font-size: 0.85rem !important;
-        flex: 0 0 50px !important;
-    }
-
-    .rs-line-label {
-        font-size: 0.75rem !important;
-        flex: 0 0 100px !important;
-    }
-
-    .rs-line-cards {
-        gap: 2px !important;
-    }
-
-    /* 7. Lobby Adjustments */
+    /* --- 1. MAIN MENU & LOBBY COMPRESSION --- */
     .menu-title {
-        font-size: 3.5rem !important;
+        font-size: 2.8rem !important;
+        margin-bottom: 0 !important;
     }
 
-    #lobby-choices input {
-        font-size: 1rem !important;
-        padding: 0.6rem !important;
+    .menu-subtitle {
+        font-size: 0.9rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .menu-buttons {
+        width: 95% !important;
+        max-width: 320px !important;
+        gap: 10px !important;
+    }
+
+    .btn {
+        padding: 0.8rem !important;
+        font-size: 0.95rem !important;
     }
 
     .lobby-teams-container {
         flex-direction: column !important;
-        gap: 2rem !important;
+        gap: 10px !important;
+    }
+
+    .lobby-team {
+        padding: 1rem !important;
+    }
+
+    .lobby-slot {
+        height: 45px !important;
     }
 
     .lobby-vs {
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
+        display: none !important;
+    }
+
+    /* Hide VS badge to save space */
+    #lobby-choices {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    #lobby-choices input {
+        width: 100% !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* --- 2. HUD (HEADER) STREAMLINING --- */
+    .table-header {
+        flex-wrap: wrap !important;
+        /* Allows elements to stack nicely */
+        justify-content: space-between !important;
+        padding: 5px 10px !important;
+        gap: 5px !important;
+        height: auto !important;
+    }
+
+    .table-logo {
+        display: none !important;
+    }
+
+    /* Hide logo to give scores more room */
+    .header-scores {
+        gap: 5px !important;
+    }
+
+    .header-score-pill {
+        font-size: 0.7rem !important;
+        padding: 3px 6px !important;
+    }
+
+    /* Force Turn Indicator to its own row on very small screens */
+    #turn-indicator {
+        width: 100% !important;
+        text-align: center !important;
+        font-size: 0.8rem !important;
+        padding-top: 4px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    #btn-quit {
+        padding: 4px 8px !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* --- 3. TABLE AREA SCALING --- */
+    /* Scale down massively and anchor to the top so the bottom is free for the hand */
+    .table-area {
+        transform: scale(0.45) !important;
+        transform-origin: top center !important;
+        margin-top: 10px !important;
+        height: 60vh !important;
+        /* Prevent it from pushing the hand down */
+    }
+
+    .felt-table {
+        width: 98vw !important;
+        height: 98vw !important;
+        /* Force a square on mobile so everyone fits */
+        border-width: 10px !important;
+    }
+
+    /* Bring seats incredibly close to the table edge */
+    .seat-south {
+        bottom: 0px !important;
+    }
+
+    .seat-north {
+        top: 0px !important;
+    }
+
+    .seat-west {
+        left: 0px !important;
+    }
+
+    .seat-east {
+        right: 0px !important;
+    }
+
+    /* --- 4. PLAYER HAND OPTIMIZATION --- */
+    .hand-area {
+        padding: 5px !important;
+        background: var(--bg-dark) !important;
+        /* Ensure visibility against background */
+    }
+
+    /* Make the hand container shorter but keep the scroll */
+    .player-hand {
+        height: 110px !important;
+        padding: 15px 10px 5px 10px !important;
+    }
+
+    /* Shrink cards and overlap them heavily */
+    .player-hand .card {
+        width: 52px !important;
+        height: 78px !important;
+        font-size: 0.75rem !important;
+        margin-left: -32px !important;
+        /* Tighter stack */
+        border-radius: 6px !important;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5) !important;
+        /* Helps distinguish tight cards */
+    }
+
+    .player-hand .card .card-center {
+        font-size: 1.3rem !important;
+    }
+
+    /* Ensure the first card isn't negatively margined out of view */
+    .player-hand .card:first-child {
+        margin-left: 0 !important;
+    }
+
+    /* Compress Action Buttons */
+    .hand-actions {
+        gap: 5px !important;
+    }
+
+    .hand-actions .btn {
+        padding: 6px 10px !important;
+        font-size: 0.75rem !important;
+    }
+
+    #pending-meld-points {
+        font-size: 0.7rem !important;
+        margin-right: 5px !important;
+    }
+
+    /* --- 5. SCOREBOARD MODAL --- */
+    .round-summary-grid {
+        grid-template-columns: 1fr !important;
+        /* Stack columns vertically */
+        gap: 1rem !important;
+    }
+
+    .modal-content {
+        width: 95vw !important;
+        padding: 15px !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+
+    .rs-line-val {
+        font-size: 0.8rem !important;
+        flex: 0 0 40px !important;
+    }
+
+    .rs-line-label {
+        font-size: 0.7rem !important;
+        flex: 0 0 90px !important;
     }
 }
