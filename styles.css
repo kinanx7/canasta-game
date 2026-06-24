@@ -1948,20 +1948,22 @@ input:checked+.toggle-slider:before {
 }
 
 /* =========================================================
-   📱 MOBILE: "JAWAKER" STYLE NATIVE PORTRAIT APP
+   📱 MOBILE: "JAWAKER" STYLE NATIVE PORTRAIT (SAFE VERSION)
    ========================================================= */
 @media (max-width: 768px) {
 
-    /* Prevent annoying pull-to-refresh and bounce scrolling on phones */
+    /* Safely prevent pull-to-refresh WITHOUT breaking screen taps */
     body {
-        overflow: hidden !important;
-        touch-action: none !important;
+        overscroll-behavior-y: none !important;
     }
 
-    #app-container {
-        height: 100vh !important;
+    /* ONLY apply the layout to the Game Screen, leaving menus safe! */
+    #game-screen.active {
         display: flex !important;
         flex-direction: column !important;
+        height: 100dvh !important;
+        /* Dynamic height fixes iOS bottom bar issues */
+        overflow: hidden !important;
     }
 
     /* --- 1. THE 9:16 PORTRAIT TABLE --- */
@@ -1969,33 +1971,33 @@ input:checked+.toggle-slider:before {
         transform: none !important;
         width: 100vw !important;
         flex-grow: 1 !important;
-        /* Fills screen perfectly */
         margin: 0 !important;
         padding: 10px !important;
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        z-index: 10 !important;
     }
 
     .felt-table {
         position: relative !important;
         width: 96vw !important;
-        height: 70vh !important;
-        /* Force true 9:16 Portrait Aspect Ratio */
+        height: 65vh !important;
         max-width: none !important;
         max-height: none !important;
         border-radius: 35px !important;
-        /* Premium rounded edges */
         border-width: 5px !important;
         box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6), 0 10px 20px rgba(0, 0, 0, 0.8) !important;
     }
 
-    /* --- 2. SEAT POSITIONING (JAWAKER STYLE) --- */
-    /* Shrink player badges and tuck them securely against the table edges */
+    /* --- 2. SEAT POSITIONING --- */
     .seat {
         transform: scale(0.85) !important;
         background: rgba(10, 10, 15, 0.85) !important;
         border-radius: 12px !important;
+        z-index: 50 !important;
+        /* Ensure seats stay clickable */
     }
 
     .seat-south {
@@ -2010,7 +2012,6 @@ input:checked+.toggle-slider:before {
         transform: translateX(-50%) scale(0.85) !important;
     }
 
-    /* Side players push exactly to the left/right walls */
     .seat-west {
         left: -5px !important;
         top: 50% !important;
@@ -2043,9 +2044,10 @@ input:checked+.toggle-slider:before {
     .discard-pile {
         width: 46px !important;
         height: 69px !important;
+        z-index: 60 !important;
+        /* Ensure deck is clickable */
     }
 
-    /* Crucial: Force East/West melds to stack VERTICALLY so they don't crash into the center deck */
     #meld-area-west,
     #meld-area-east {
         flex-direction: column !important;
@@ -2057,11 +2059,11 @@ input:checked+.toggle-slider:before {
     /* --- 4. THE DOCKED PLAYER HAND --- */
     .hand-area {
         background: #050508 !important;
-        /* Pitch black dock base */
         padding: 0 !important;
         border-top: 2px solid var(--gold) !important;
-        z-index: 100;
-        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.8) !important;
+        z-index: 100 !important;
+        /* Hand MUST be on top to be clickable */
+        position: relative;
     }
 
     .player-hand {
@@ -2072,13 +2074,14 @@ input:checked+.toggle-slider:before {
         justify-content: safe center !important;
     }
 
-    /* Huge, easily tappable cards with heavy shadows for definition */
     .player-hand .card {
         width: 62px !important;
         height: 93px !important;
         margin-left: -30px !important;
         border-radius: 6px !important;
         box-shadow: -4px 0 10px rgba(0, 0, 0, 0.7) !important;
+        z-index: 110 !important;
+        /* Cards must be highest layer to tap */
     }
 
     .player-hand .card:first-child {
@@ -2089,7 +2092,14 @@ input:checked+.toggle-slider:before {
         font-size: 1.3rem !important;
     }
 
-    /* --- 5. JAWAKER-STYLE MAIN MENU & LOBBY --- */
+    /* --- 5. MENUS & LOBBY FIXES --- */
+    #menu-screen,
+    #lobby-screen {
+        padding-top: 5vh !important;
+        z-index: 200 !important;
+        /* Restores clickability to the main menu */
+    }
+
     .menu-title {
         font-size: 3rem !important;
         letter-spacing: 2px !important;
@@ -2130,10 +2140,12 @@ input:checked+.toggle-slider:before {
         border-radius: 12px !important;
     }
 
-    /* --- 6. STREAMLINED HEADER --- */
+    /* --- 6. HEADER --- */
     .table-header {
         padding: 8px 10px !important;
         background: #0a0a0c !important;
+        z-index: 100 !important;
+        position: relative;
     }
 
     .table-logo {
