@@ -1957,13 +1957,14 @@ input:checked+.toggle-slider:before {
         overscroll-behavior-y: none !important;
     }
 
-    /* ONLY apply the layout to the Game Screen, leaving menus safe! */
-    #game-screen.active {
+    /* ONLY apply the layout to the active Table Screen, leaving menus safe! */
+    #table-screen.active {
         display: flex !important;
         flex-direction: column !important;
         height: 100dvh !important;
         /* Dynamic height fixes iOS bottom bar issues */
         overflow: hidden !important;
+        justify-content: flex-start !important;
     }
 
     /* --- 1. THE 9:16 PORTRAIT TABLE --- */
@@ -2064,6 +2065,7 @@ input:checked+.toggle-slider:before {
         z-index: 100 !important;
         /* Hand MUST be on top to be clickable */
         position: relative;
+        flex-shrink: 0 !important;
     }
 
     .player-hand {
@@ -2146,6 +2148,7 @@ input:checked+.toggle-slider:before {
         background: #0a0a0c !important;
         z-index: 100 !important;
         position: relative;
+        flex-shrink: 0 !important;
     }
 
     .table-logo {
