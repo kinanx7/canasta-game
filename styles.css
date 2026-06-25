@@ -1948,11 +1948,11 @@ input:checked+.toggle-slider:before {
 }
 
 /* =========================================================
-   📱 MOBILE: JAWAKER REPLICA (FIXED SCROLL & MELDS)
+   📱 MOBILE: PREMIUM NATIVE APP OVERHAUL (FIXED GEOMETRY)
    ========================================================= */
 @media (max-width: 768px) {
 
-    /* 1. Base Setup */
+    /* --- 1. BASE SETUP --- */
     body {
         overscroll-behavior-y: none !important;
     }
@@ -1966,7 +1966,58 @@ input:checked+.toggle-slider:before {
         justify-content: flex-start !important;
     }
 
-    /* 2. Header */
+    /* --- 2. PREMIUM MAIN MENU REWORK --- */
+    #menu-screen {
+        background: radial-gradient(circle at top, #1a1a2e 0%, #050508 100%) !important;
+        justify-content: center !important;
+        gap: 30px !important;
+    }
+
+    .menu-title {
+        font-size: 3.8rem !important;
+        margin: 0 !important;
+        text-shadow: 0 10px 20px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    .menu-subtitle {
+        display: none !important;
+    }
+
+    /* Hide for a cleaner, modern app look */
+    .menu-buttons {
+        gap: 15px !important;
+        width: 85vw !important;
+        max-width: 350px !important;
+        margin: 0 auto !important;
+    }
+
+    .menu-buttons .btn {
+        width: 100% !important;
+        padding: 18px !important;
+        font-size: 1.2rem !important;
+        border-radius: 20px !important;
+        border: 2px solid transparent !important;
+    }
+
+    /* Style specific menu buttons */
+    #btn-multiplayer {
+        background: linear-gradient(135deg, #d4af37, #aa8623) !important;
+        color: #000 !important;
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4) !important;
+        font-weight: 800 !important;
+    }
+
+    #btn-solo {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    #btn-settings {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* --- 3. HEADER --- */
     .table-header {
         padding: 8px 10px !important;
         background: #0a0a0c !important;
@@ -1979,13 +2030,11 @@ input:checked+.toggle-slider:before {
         display: none !important;
     }
 
-    /* 3. The Main Table Container (Pushed UP to leave room for the hand) */
+    /* --- 4. THE TABLE AREA --- */
     .table-area {
         position: absolute !important;
         top: 60px !important;
-        /* Just below the header */
         bottom: 120px !important;
-        /* Stops perfectly above your hand dock */
         left: 0 !important;
         width: 100vw !important;
         height: auto !important;
@@ -1997,7 +2046,6 @@ input:checked+.toggle-slider:before {
         padding: 10px 15px !important;
     }
 
-    /* The Metallic Green Portrait Table */
     .felt-table {
         position: relative !important;
         width: 100% !important;
@@ -2006,12 +2054,11 @@ input:checked+.toggle-slider:before {
         max-height: none !important;
         border-radius: 30px !important;
         border: 4px solid #a8a8a8 !important;
-        /* Silver metallic rim */
         box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.8) !important;
         background: linear-gradient(180deg, #32a852, #1b5e20) !important;
     }
 
-    /* 4. Jawaker Avatars (Stripped backgrounds, pinned to table borders) */
+    /* --- 5. JAWAKER AVATARS --- */
     .seat {
         width: auto !important;
         height: auto !important;
@@ -2053,7 +2100,6 @@ input:checked+.toggle-slider:before {
         transform: translateY(-8px) !important;
     }
 
-    /* Hide clunky elements */
     #count-north,
     #count-west,
     #count-east,
@@ -2063,7 +2109,6 @@ input:checked+.toggle-slider:before {
         display: none !important;
     }
 
-    /* Pin avatars exactly on the silver rim */
     .seat-south {
         bottom: -25px !important;
         left: 50% !important;
@@ -2088,8 +2133,14 @@ input:checked+.toggle-slider:before {
         transform: translateY(-50%) !important;
     }
 
-    /* 5. Center Deck & Discard */
+    /* --- 6. CENTER DECK (PUSHED UP) --- */
+    /* FIX: Moved the deck significantly higher to leave massive room for your melds */
     .center-play-zone {
+        position: absolute !important;
+        top: 38% !important;
+        /* Moves it above the true center */
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
         gap: 10px !important;
         flex-direction: row !important;
     }
@@ -2110,7 +2161,24 @@ input:checked+.toggle-slider:before {
         display: none !important;
     }
 
-    /* 6. MELDS (Shrunk massively and pushed to corners so they don't crash into center) */
+    /* --- 7. MELDS (FIXED GEOMETRY) --- */
+    /* FIX: Pulled West/East deep inside the green felt to stop bleeding */
+    .melds-west {
+        left: 65px !important;
+        top: 45% !important;
+        transform: translateY(-50%) !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+
+    .melds-east {
+        right: 65px !important;
+        top: 45% !important;
+        transform: translateY(-50%) !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+
     .melds-north {
         top: 25px !important;
         left: 5% !important;
@@ -2120,47 +2188,32 @@ input:checked+.toggle-slider:before {
         flex-wrap: wrap !important;
     }
 
+    /* FIX: Grounded your melds tightly to the bottom of the felt so they don't hit the deck */
     .melds-south {
-        bottom: 25px !important;
+        bottom: 15px !important;
         left: 5% !important;
         width: 90% !important;
         justify-content: center !important;
+        align-items: flex-end !important;
         gap: 8px !important;
         flex-wrap: wrap !important;
     }
 
-    .melds-west {
-        left: 20px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        flex-direction: column !important;
-        gap: 6px !important;
-    }
-
-    .melds-east {
-        right: 20px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        flex-direction: column !important;
-        gap: 6px !important;
-    }
-
-    /* Tiny meld cards */
     .meld-column .card {
-        width: 26px !important;
-        height: 39px !important;
+        width: 28px !important;
+        height: 42px !important;
         font-size: 0.5rem !important;
     }
 
     .meld-column .card .card-center {
-        font-size: 0.6rem !important;
+        font-size: 0.65rem !important;
     }
 
     .meld-column {
-        min-height: 39px !important;
+        min-height: 42px !important;
     }
 
-    /* 7. PLAYER HAND (Fixed scroll bug, locked to bottom) */
+    /* --- 8. PLAYER HAND --- */
     .hand-area {
         position: fixed !important;
         bottom: 0 !important;
@@ -2168,7 +2221,6 @@ input:checked+.toggle-slider:before {
         width: 100vw !important;
         height: 110px !important;
         background: #0a0a0c !important;
-        /* Pitch black dock */
         z-index: 100 !important;
         border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
         padding: 0 !important;
@@ -2178,13 +2230,8 @@ input:checked+.toggle-slider:before {
         display: flex !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
-        /* Enables Horizontal Scroll */
         overflow-y: visible !important;
-        /* Lets selected cards pop UP */
         -webkit-overflow-scrolling: touch !important;
-        /* Buttery smooth iOS scrolling */
-
-        /* FIX: Flex-start forces the cards to align left, preventing them from being trapped off-screen! */
         justify-content: flex-start !important;
         align-items: flex-end !important;
         padding: 25px 15px 10px 15px !important;
@@ -2192,7 +2239,6 @@ input:checked+.toggle-slider:before {
         width: 100% !important;
     }
 
-    /* Adds empty space at the end of the hand so the last card isn't glued to the screen edge */
     .player-hand::after {
         content: '';
         flex: 0 0 30px !important;
@@ -2201,11 +2247,9 @@ input:checked+.toggle-slider:before {
 
     .player-hand .card {
         flex: 0 0 auto !important;
-        /* FIX: Prevents cards from squeezing/crushing together */
         width: 60px !important;
         height: 90px !important;
         margin-left: -35px !important;
-        /* Heavy Jawaker-style overlap */
         border-radius: 6px !important;
         box-shadow: -3px 0 8px rgba(0, 0, 0, 0.6) !important;
         position: relative !important;
@@ -2219,7 +2263,6 @@ input:checked+.toggle-slider:before {
         font-size: 1.2rem !important;
     }
 
-    /* Buttons hovering just above the hand dock */
     .hand-actions {
         position: fixed !important;
         bottom: 115px !important;
@@ -2239,30 +2282,10 @@ input:checked+.toggle-slider:before {
         border: none !important;
     }
 
-    /* 8. Fix Menus */
-    #menu-screen,
+    /* --- 9. LOBBY MENUS --- */
     #lobby-screen {
         z-index: 200 !important;
         padding-top: 5vh !important;
-    }
-
-    .menu-title {
-        font-size: 3rem !important;
-        letter-spacing: 2px !important;
-    }
-
-    .menu-buttons {
-        flex-direction: column !important;
-        gap: 15px !important;
-        width: 85vw !important;
-        margin: 0 auto !important;
-    }
-
-    .menu-buttons .btn {
-        width: 100% !important;
-        padding: 18px !important;
-        font-size: 1.2rem !important;
-        border-radius: 15px !important;
     }
 
     .lobby-teams-container {
