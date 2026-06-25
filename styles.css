@@ -1948,104 +1948,112 @@ input:checked+.toggle-slider:before {
 }
 
 /* =========================================================
-   📱 MOBILE: JAWAKER SCREENSHOT REPLICA
+   📱 MOBILE: JAWAKER REPLICA (FIXED SCROLL & MELDS)
    ========================================================= */
 @media (max-width: 768px) {
 
     /* 1. Base Setup */
     body {
-        overscroll-behavior: none !important;
+        overscroll-behavior-y: none !important;
     }
 
-    #table-screen {
-        padding: 0 !important;
+    #table-screen.active {
         display: flex !important;
         flex-direction: column !important;
+        height: 100dvh !important;
+        overflow: hidden !important;
+        padding: 0 !important;
         justify-content: flex-start !important;
     }
 
+    /* 2. Header */
     .table-header {
-        padding: 10px !important;
-        background: transparent !important;
+        padding: 8px 10px !important;
+        background: #0a0a0c !important;
+        z-index: 100 !important;
+        flex-shrink: 0 !important;
         border: none !important;
-        z-index: 10 !important;
     }
 
     .table-logo {
         display: none !important;
     }
 
-    /* 2. The Main Table Container */
+    /* 3. The Main Table Container (Pushed UP to leave room for the hand) */
     .table-area {
         position: absolute !important;
-        top: 70px !important;
-        bottom: 220px !important;
-        /* Reserves space at the bottom for cards and your avatar */
+        top: 60px !important;
+        /* Just below the header */
+        bottom: 120px !important;
+        /* Stops perfectly above your hand dock */
+        left: 0 !important;
         width: 100vw !important;
         height: auto !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
         transform: none !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 !important;
+        padding: 10px 15px !important;
     }
 
-    /* 3. The Green Vertical Table (Metallic Border) */
+    /* The Metallic Green Portrait Table */
     .felt-table {
-        width: 75vw !important;
-        height: 60vh !important;
-        border-radius: 35px !important;
-        border: 5px solid #a8a8a8 !important;
+        position: relative !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        border-radius: 30px !important;
+        border: 4px solid #a8a8a8 !important;
         /* Silver metallic rim */
-        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.8) !important;
         background: linear-gradient(180deg, #32a852, #1b5e20) !important;
-        /* Bright green */
-        aspect-ratio: auto !important;
     }
 
-    /* 4. Strip Bulky Backgrounds from Players */
+    /* 4. Jawaker Avatars (Stripped backgrounds, pinned to table borders) */
     .seat {
         width: auto !important;
         height: auto !important;
         background: transparent !important;
         border: none !important;
+        z-index: 50 !important;
+        position: absolute !important;
     }
 
     .player-card {
+        flex-direction: column !important;
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
-        flex-direction: column !important;
-        /* Stacks avatar and name vertically */
-        gap: 0px !important;
         padding: 0 !important;
         width: auto !important;
         height: auto !important;
+        gap: 0 !important;
         backdrop-filter: none !important;
     }
 
     .player-avatar {
-        width: 50px !important;
-        height: 50px !important;
-        font-size: 1.3rem !important;
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.2rem !important;
         border: 2px solid #fff !important;
         background: #111 !important;
-        margin: 0 !important;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6) !important;
+        margin: 0 auto !important;
     }
 
     .player-name {
-        background: rgba(0, 0, 0, 0.7) !important;
+        background: rgba(0, 0, 0, 0.8) !important;
         color: white !important;
-        padding: 3px 12px !important;
+        padding: 2px 10px !important;
         border-radius: 12px !important;
+        font-size: 0.7rem !important;
         border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        font-size: 0.75rem !important;
-        font-weight: 500 !important;
-        transform: translateY(-10px) !important;
-        /* Overlaps name slightly onto the avatar */
+        transform: translateY(-8px) !important;
     }
 
-    /* Hide unnecessary UI text for a clean look */
+    /* Hide clunky elements */
     #count-north,
     #count-west,
     #count-east,
@@ -2055,7 +2063,13 @@ input:checked+.toggle-slider:before {
         display: none !important;
     }
 
-    /* 5. Pin Avatars EXACTLY to Table Edges */
+    /* Pin avatars exactly on the silver rim */
+    .seat-south {
+        bottom: -25px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+
     .seat-north {
         top: -25px !important;
         left: 50% !important;
@@ -2074,27 +2088,17 @@ input:checked+.toggle-slider:before {
         transform: translateY(-50%) !important;
     }
 
-    /* Move User's Avatar below the hand entirely */
-    .seat-south {
-        position: fixed !important;
-        bottom: 10px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        z-index: 200 !important;
-    }
-
-    /* 6. Center Deck & Discard Side-by-Side */
+    /* 5. Center Deck & Discard */
     .center-play-zone {
+        gap: 10px !important;
         flex-direction: row !important;
-        gap: 8px !important;
     }
 
     .deck-pile,
     .discard-pile {
-        width: 48px !important;
-        height: 72px !important;
+        width: 44px !important;
+        height: 66px !important;
         border-radius: 6px !important;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5) !important;
     }
 
     .deck-pile {
@@ -2102,51 +2106,109 @@ input:checked+.toggle-slider:before {
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
     }
 
-    /* Flat red deck */
     .deck-card-back {
         display: none !important;
     }
 
-    #bench-lock-badge {
-        display: none !important;
+    /* 6. MELDS (Shrunk massively and pushed to corners so they don't crash into center) */
+    .melds-north {
+        top: 25px !important;
+        left: 5% !important;
+        width: 90% !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
     }
 
-    /* 7. Floating Overlapping Player Hand */
+    .melds-south {
+        bottom: 25px !important;
+        left: 5% !important;
+        width: 90% !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+    }
+
+    .melds-west {
+        left: 20px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+
+    .melds-east {
+        right: 20px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+
+    /* Tiny meld cards */
+    .meld-column .card {
+        width: 26px !important;
+        height: 39px !important;
+        font-size: 0.5rem !important;
+    }
+
+    .meld-column .card .card-center {
+        font-size: 0.6rem !important;
+    }
+
+    .meld-column {
+        min-height: 39px !important;
+    }
+
+    /* 7. PLAYER HAND (Fixed scroll bug, locked to bottom) */
     .hand-area {
         position: fixed !important;
-        bottom: 75px !important;
-        /* Just above the user avatar */
+        bottom: 0 !important;
         left: 0 !important;
         width: 100vw !important;
-        background: transparent !important;
-        /* Removes the dock background */
-        border: none !important;
-        box-shadow: none !important;
+        height: 110px !important;
+        background: #0a0a0c !important;
+        /* Pitch black dock */
         z-index: 100 !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
         padding: 0 !important;
     }
 
     .player-hand {
         display: flex !important;
-        justify-content: center !important;
-        /* Centers the hand */
         flex-wrap: nowrap !important;
-        overflow: visible !important;
-        /* Let cards pop up */
-        height: auto !important;
-        padding: 0 10px !important;
+        overflow-x: auto !important;
+        /* Enables Horizontal Scroll */
+        overflow-y: visible !important;
+        /* Lets selected cards pop UP */
+        -webkit-overflow-scrolling: touch !important;
+        /* Buttery smooth iOS scrolling */
+
+        /* FIX: Flex-start forces the cards to align left, preventing them from being trapped off-screen! */
+        justify-content: flex-start !important;
+        align-items: flex-end !important;
+        padding: 25px 15px 10px 15px !important;
+        height: 100% !important;
+        width: 100% !important;
     }
 
-    /* Dynamically size cards based on screen width with tight overlapping */
+    /* Adds empty space at the end of the hand so the last card isn't glued to the screen edge */
+    .player-hand::after {
+        content: '';
+        flex: 0 0 30px !important;
+        height: 100%;
+    }
+
     .player-hand .card {
-        width: 14vw !important;
-        height: 21vw !important;
-        max-width: 65px !important;
-        max-height: 98px !important;
-        margin-left: -7vw !important;
-        /* Heavy overlap like the screenshot */
-        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.5) !important;
+        flex: 0 0 auto !important;
+        /* FIX: Prevents cards from squeezing/crushing together */
+        width: 60px !important;
+        height: 90px !important;
+        margin-left: -35px !important;
+        /* Heavy Jawaker-style overlap */
         border-radius: 6px !important;
+        box-shadow: -3px 0 8px rgba(0, 0, 0, 0.6) !important;
+        position: relative !important;
     }
 
     .player-hand .card:first-child {
@@ -2154,54 +2216,73 @@ input:checked+.toggle-slider:before {
     }
 
     .player-hand .card .card-center {
-        font-size: 1.1rem !important;
+        font-size: 1.2rem !important;
     }
 
-    /* Move buttons to the left */
+    /* Buttons hovering just above the hand dock */
     .hand-actions {
         position: fixed !important;
-        bottom: 25px !important;
-        left: 15px !important;
+        bottom: 115px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         z-index: 150 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        pointer-events: none !important;
     }
 
     .hand-actions .btn {
-        padding: 8px 15px !important;
-        font-size: 0.8rem !important;
-        border-radius: 8px !important;
+        pointer-events: auto !important;
         background: #d4af37 !important;
         color: #000 !important;
         border: none !important;
     }
 
-    /* 8. Scale Melds Down inside the table */
-    .melds-north {
-        top: 35px !important;
-        left: 50% !important;
-        transform: translateX(-50%) scale(0.7) !important;
-        width: 60vw !important;
-        justify-content: center !important;
+    /* 8. Fix Menus */
+    #menu-screen,
+    #lobby-screen {
+        z-index: 200 !important;
+        padding-top: 5vh !important;
     }
 
-    .melds-south {
-        bottom: 35px !important;
-        left: 50% !important;
-        transform: translateX(-50%) scale(0.7) !important;
-        width: 60vw !important;
-        justify-content: center !important;
+    .menu-title {
+        font-size: 3rem !important;
+        letter-spacing: 2px !important;
     }
 
-    .melds-west {
-        left: 25px !important;
-        top: 50% !important;
-        transform: translateY(-50%) scale(0.7) !important;
+    .menu-buttons {
         flex-direction: column !important;
+        gap: 15px !important;
+        width: 85vw !important;
+        margin: 0 auto !important;
     }
 
-    .melds-east {
-        right: 25px !important;
-        top: 50% !important;
-        transform: translateY(-50%) scale(0.7) !important;
+    .menu-buttons .btn {
+        width: 100% !important;
+        padding: 18px !important;
+        font-size: 1.2rem !important;
+        border-radius: 15px !important;
+    }
+
+    .lobby-teams-container {
         flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    .lobby-team {
+        width: 100% !important;
+        border-radius: 15px !important;
+        padding: 15px !important;
+    }
+
+    .lobby-vs {
+        display: none !important;
+    }
+
+    #lobby-choices input {
+        padding: 15px !important;
+        font-size: 1.1rem !important;
+        border-radius: 12px !important;
     }
 }
